@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  influxdb:
+    image: quay.io/influxdb/influxdb:v2.0.2
+    ports:
+      - "8086:8086"
+    volumes:
+      - './influxdb-data:/root/.influxdbv2'
+  telegraf:
+    image: telegraf:1.16.2-alpine
+    command: --config /conf/all_routes.conf
+    environment:
+      - INFLUX_TOKEN=OYWTpcmQc7jk3kn_l49NlNWbj0AQZ2-8B-u9ai9M0O90Fh-bEoPOurK_m6f3sjw3n-c8lmfvHhMNYXaBO8GAKA==
+    volumes:
+      - type: 'bind'
+        source: './transit_data'
+        target: '/data'
+      - type: 'bind'
+        source: './telegraf_conf'
+        target: '/conf'
+  abq_transit_proxy:
+    build: ./abq_transit_rewrite/
+    ports:
+      - "5000:5000"
+
+#networks:
+#  frontend:
+#  backend:

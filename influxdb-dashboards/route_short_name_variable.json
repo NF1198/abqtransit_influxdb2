@@ -1,0 +1,35 @@
+{
+    "meta": {
+     "version": "1",
+     "type": "variable",
+     "name": "route_short_name-Template",
+     "description": "template created from variable: route_short_name"
+    },
+    "content": {
+     "data": {
+      "type": "variable",
+      "id": "06aeae1a33b40000",
+      "attributes": {
+       "name": "route_short_name",
+       "arguments": {
+        "type": "query",
+        "values": {
+         "query": "import \"influxdata/influxdb/schema\"\nschema.tagValues(bucket: \"abqtransit\", tag: \"route_short_name\")\n  |> sort(columns: [\"_value\"], desc: false)",
+         "language": "flux"
+        }
+       },
+       "selected": []
+      },
+      "relationships": {
+       "variable": {
+        "data": []
+       },
+       "label": {
+        "data": []
+       }
+      }
+     },
+     "included": []
+    },
+    "labels": []
+   }

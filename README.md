@@ -1,5 +1,4 @@
-# abqtransit_influxdb2
-Albuquerque Bus System Monitoring with InfluxDB 2.0
+# Albuquerque Bus System Monitoring with InfluxDB 2.0
 
 This repository contains a simple setup to log and monitor ABQ transit data in real-time.
 

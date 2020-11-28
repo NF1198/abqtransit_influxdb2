@@ -3,6 +3,8 @@ Albuquerque Bus System Monitoring with InfluxDB 2.0
 
 This repository contains a simple setup to log and monitor ABQ transit data in real-time.
 
+![screenshot](assets/abq_transit_influxdb2.png)
+
 ## How to run:
 
 Note: InfluxDB data will be stored in the `influxdb-data` folder by default. Configure this location in `docker-compose.yml`

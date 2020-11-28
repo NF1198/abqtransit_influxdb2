@@ -14,9 +14,9 @@ Note: InfluxDB data will be stored in the `influxdb-data` folder by default. Con
 ```
 docker-compose up -d influxdb
 ```
-3. Setup InfluxDB with a user, org, and bucket. The scripts are setup for: `org:tauterra`, `bucket:abqtransit`.
-4. Create a token with write permissions to the abqtransit bucket. Make note of this token.
-5. Paste the token in `docker-compose.yml`:`services/telegraf/environment/INFLUX_TOKEN`
+3. Setup InfluxDB with a user, org, and bucket. The telegraf config expects: `org=tauterra`, `bucket=abqtransit`.
+4. Create a token with write permissions to the `abqtransit` bucket. Make note of this token.
+5. Paste the token in `docker-compose.yml` under `services/telegraf/environment/INFLUX_TOKEN`.
 6. Start remaining containers:
 ```
 docker-compose up -d abq_transit_proxy

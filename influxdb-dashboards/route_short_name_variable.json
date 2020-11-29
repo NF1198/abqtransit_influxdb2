@@ -317,7 +317,7 @@
          "type": "histogram",
          "queries": [
           {
-           "text": "multiplyByX = (x, tables=<-) =>\ntables\n|> map(fn: (r) => ({\n    r with\n    _value: r._value * x\n  })\n)\n\nfrom(bucket: \"abqtransit\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vehicle\")\n  |> filter(fn: (r) => r[\"route_short_name\"] == v.route_short_name)\n  |> filter(fn: (r) => r[\"_field\"] == \"speed_kph\")\n  |> group(columns: [\"vehicle_id\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> multiplyByX(x: 0.621371)\n  |> yield(name: \"mean\")",
+           "text": "multiplyByX = (x, tables=<-) =>\ntables\n|> map(fn: (r) => ({\n    r with\n    _value: r._value * x\n  })\n)\n\nfrom(bucket: \"abqtransit\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vehicle\")\n  |> filter(fn: (r) => r[\"route_short_name\"] == v.route_short_name)\n  |> filter(fn: (r) => r[\"_field\"] == \"speed_kph\")\n  |> multiplyByX(x: 0.621371)\n  |> group(columns: [\"trip_id\", \"vehicle_id\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)\n  |> yield(name: \"mean\")",
            "editMode": "advanced",
            "name": "",
            "builderConfig": {
@@ -343,21 +343,21 @@
          ],
          "colors": [
           {
-           "id": "8a5b8e47-619e-4d9e-b692-7c61239f538d",
+           "id": "4f253188-8ce1-4b80-8eea-2fef60b24344",
            "type": "scale",
            "hex": "#31C0F6",
            "name": "Nineteen Eighty Four",
            "value": 0
           },
           {
-           "id": "4e58d3c0-aef4-4a88-9332-30dc3ed4935f",
+           "id": "f78616ce-7449-47a1-9e37-e4bda03458fe",
            "type": "scale",
            "hex": "#A500A5",
            "name": "Nineteen Eighty Four",
            "value": 0
           },
           {
-           "id": "64e108f5-235d-47ac-bbb2-1c7433c21aa3",
+           "id": "6c5d3326-4dbb-464c-acfc-b67f84555fd2",
            "type": "scale",
            "hex": "#FF7E27",
            "name": "Nineteen Eighty Four",
@@ -366,7 +366,8 @@
          ],
          "xColumn": "_value",
          "fillColumns": [
-          "vehicle_id"
+          "vehicle_id",
+          "trip_id"
          ],
          "xAxisLabel": "speed [mph]",
          "position": "stacked",

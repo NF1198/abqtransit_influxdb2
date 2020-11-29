@@ -2,6 +2,8 @@
 
 This repository contains a simple setup to log and monitor ABQ transit data in real-time.
 
+See also: [abqtransit](http://abqtransit.com)
+
 ![screenshot](assets/abq_transit_influxdb2.png)
 
 ## How to run:
